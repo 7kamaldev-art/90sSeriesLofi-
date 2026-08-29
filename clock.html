@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock - Multiple Time Zones</title>
+    <link rel="stylesheet" href="clock-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-clock"></i> Global Time Zone Clock</h1>
+            <p class="subtitle">Real-time clocks across different time zones</p>
+        </header>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="search-group">
+                <input 
+                    type="text" 
+                    id="timezoneInput" 
+                    class="timezone-input" 
+                    placeholder="Search timezone or city..."
+                    autocomplete="off"
+                >
+                <button id="addBtn" class="add-btn">
+                    <i class="fas fa-plus"></i> Add
+                </button>
+            </div>
+
+            <div class="settings">
+                <button id="formatToggle" class="format-toggle" title="Toggle 12/24 hour format">
+                    <i class="fas fa-hourglass-half"></i> <span id="formatText">12 Hour</span>
+                </button>
+                <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Timezone Suggestions -->
+        <div id="suggestions" class="suggestions hidden">
+            <ul id="suggestionsList"></ul>
+        </div>
+
+        <!-- Main Clock Display -->
+        <section class="main-clock-section">
+            <div class="main-clock">
+                <div class="clock-circle">
+                    <canvas id="analogClock" width="300" height="300"></canvas>
+                </div>
+                <div class="digital-display">
+                    <div id="mainTime" class="main-time">00:00:00</div>
+                    <div id="mainTimezone" class="main-timezone">Your Time Zone</div>
+                    <div id="mainDate" class="main-date">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Secondary Clocks Grid -->
+        <section class="secondary-clocks">
+            <h2>Other Time Zones</h2>
+            <div id="clocksGrid" class="clocks-grid">
+                <!-- Clock cards will be added here -->
+            </div>
+        </section>
+
+        <!-- Quick Access Timezones -->
+        <section class="quick-access">
+            <h2>Quick Access</h2>
+            <div class="quick-buttons">
+                <button class="quick-btn" data-timezone="UTC" onclick="addTimezone('UTC')">
+                    <i class="fas fa-globe"></i> UTC
+                </button>
+                <button class="quick-btn" data-timezone="America/New_York" onclick="addTimezone('America/New_York')">
+                    <i class="fas fa-map-pin"></i> New York
+                </button>
+                <button class="quick-btn" data-timezone="Europe/London" onclick="addTimezone('Europe/London')">
+                    <i class="fas fa-map-pin"></i> London
+                </button>
+                <button class="quick-btn" data-timezone="Asia/Tokyo" onclick="addTimezone('Asia/Tokyo')">
+                    <i class="fas fa-map-pin"></i> Tokyo
+                </button>
+                <button class="quick-btn" data-timezone="Asia/Dubai" onclick="addTimezone('Asia/Dubai')">
+                    <i class="fas fa-map-pin"></i> Dubai
+                </button>
+                <button class="quick-btn" data-timezone="Australia/Sydney" onclick="addTimezone('Australia/Sydney')">
+                    <i class="fas fa-map-pin"></i> Sydney
+                </button>
+                <button class="quick-btn" data-timezone="Asia/Kolkata" onclick="addTimezone('Asia/Kolkata')">
+                    <i class="fas fa-map-pin"></i> India
+                </button>
+                <button class="quick-btn" data-timezone="America/Los_Angeles" onclick="addTimezone('America/Los_Angeles')">
+                    <i class="fas fa-map-pin"></i> Los Angeles
+                </button>
+            </div>
+        </section>
+
+        <!-- Time Zone Info -->
+        <section class="info-section">
+            <h2>Time Zone Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Add Time Zones</h3>
+                    <p>Search and add any time zone from around the world. Use city names or timezone identifiers.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-sync"></i>
+                    <h3>Real-Time Updates</h3>
+                    <p>All clocks update in real-time every second, showing accurate current time in each zone.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>12/24 Hour Format</h3>
+                    <p>Toggle between 12-hour and 24-hour format with a single click for your preference.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Dark/Light Theme</h3>
+                    <p>Switch between light and dark themes for comfortable viewing at any time of day.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="clock-script.js"></script>
+</body>
+</html>
